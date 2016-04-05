@@ -1,6 +1,8 @@
 ---
 name: just_install_packages
-packages: [berkeleydb]
+packages:
+- berkeleydb
+- openldap
 templates:
   ignoreme: ignoreme
 properties: {}
