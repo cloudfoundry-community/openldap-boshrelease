@@ -1,6 +1,6 @@
 ---
 name: just_install_packages
-packages: []
+packages: [berkeleydb]
 templates:
   ignoreme: ignoreme
 properties: {}
