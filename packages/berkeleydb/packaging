@@ -9,8 +9,8 @@ CPUS=$(grep -c ^processor /proc/cpuinfo)
 export HOME=/var/vcap
 
 cd $BOSH_COMPILE_TARGET
-
 tar -xzvf berkeleydb/db-5.3.28.tar.gz
 cd db-5.3.28/build_unix
+
 ../dist/configure --prefix=${BOSH_INSTALL_TARGET}
 make && make install

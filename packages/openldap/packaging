@@ -11,12 +11,10 @@ export BDB_PATH=/var/vcap/packages/berkeleydb
 
 cd $BOSH_COMPILE_TARGET
 tar -xzvf openldap/openldap-2.4.44.tgz
-
 cd openldap-2.4.44
 
 export CPPFLAGS="-I ${BDB_PATH}/include"
 export LD_LIBRARY_PATH="${BDB_PATH}/lib"
 ./configure --prefix=${BOSH_INSTALL_TARGET}
-make
-make depend
-make install
+
+make && make depend && make install
