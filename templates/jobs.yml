@@ -9,14 +9,23 @@ update:
   serial: false
 
 jobs:
-  - name: just_install_packages
+  # - name: just_install_packages
+  #   templates:
+  #   - name: just_install_packages
+  #     release: openldap
+  #   instances: 1
+  #   persistent_disk: 0
+  #   resource_pool: small_z1
+  #   networks: (( param "please set just_install_package networks" ))
+
+  - name: ldap-server
     templates:
-    - name: just_install_packages
+    - name: ldap-server
       release: openldap
     instances: 1
     persistent_disk: 0
     resource_pool: small_z1
-    networks: (( param "please set just_install_package networks" ))
+    networks: (( param "please set ldap-server networks" ))
 
 networks: (( param "please set networks" ))
 

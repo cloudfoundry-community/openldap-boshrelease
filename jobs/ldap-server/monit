@@ -1,0 +1,5 @@
+check process ldap-server
+  with pidfile /var/vcap/sys/run/ldap-server/ldap-server.pid
+  start program "/var/vcap/jobs/ldap-server/bin/monit_debugger ldap-server_ctl '/var/vcap/jobs/ldap-server/bin/ctl start'"
+  stop program "/var/vcap/jobs/ldap-server/bin/monit_debugger ldap-server_ctl '/var/vcap/jobs/ldap-server/bin/ctl stop'"
+  group vcap

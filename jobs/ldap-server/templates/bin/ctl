@@ -1,0 +1,46 @@
+#!/bin/bash
+
+set -e # exit immediately if a simple command exits with a non-zero status
+set -u # report the usage of uninitialized variables
+
+# Setup env vars and folders for the webapp_ctl script
+source /var/vcap/jobs/ldap-server/helpers/ctl_setup.sh 'ldap-server'
+
+export PORT=${PORT:-5000}
+export LANG=en_US.UTF-8
+
+export OPENLDAP=/var/vcap/packages/openldap
+export PATH=${OPENLDAP}/libexec:${OPENLDAP}/sbin:$PATH
+
+case $1 in
+
+  start)
+    set -x
+    pid_guard $PIDFILE $JOB_NAME
+
+    export CONF_FILE=$JOB_DIR/slapd.ldif
+    export CONF_DIR=$STORE_DIR/slapd.d
+    mkdir -p $CONF_DIR
+    chown vcap:vcap $CONF_DIR
+
+    export DATA_DIR=$STORE_DIR/data
+    mkdir -p $DATA_DIR
+    chown vcap:vcap $DATA_DIR
+    chmod 700 $DATA_DIR
+
+    sudo slapadd -F $CONF_DIR -n 0 -l $CONF_FILE
+    sudo slapd -F $CONF_DIR >>$LOG_DIR/$JOB_NAME.log 2>&1
+
+    ;;
+
+  stop)
+    kill_and_wait $PIDFILE
+
+    ;;
+  *)
+    echo "Usage: ldap-server_ctl {start|stop}"
+
+    ;;
+
+esac
+exit 0
