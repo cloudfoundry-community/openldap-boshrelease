@@ -17,4 +17,4 @@ export CPPFLAGS="-I ${BDB_PATH}/include"
 export LD_LIBRARY_PATH="${BDB_PATH}/lib"
 ./configure --prefix=${BOSH_INSTALL_TARGET}
 
-make && make depend && make install
+make depend && make && make install
