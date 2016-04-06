@@ -9,3 +9,13 @@ templates:
   helpers/ctl_setup.sh: helpers/ctl_setup.sh
   helpers/ctl_utils.sh: helpers/ctl_utils.sh
   slapd.ldif.erb: slapd.ldif
+properties:
+  olcSuffix:
+    description: "Default domain components of the db"
+    default: "dc=domain,dc=com"
+  olcRootDN:
+    description: "The Common Name for root access to the database"
+    default: "cn=Manager,dc=domain,dc=com"
+  olcRootPW:
+    description: "Root PW for the database"
+    default: "secret"
