@@ -14,8 +14,8 @@ properties:
     description: "Default domain components of the db"
     default: "dc=domain,dc=com"
   olcRootDN:
-    description: "The Common Name for root access to the database"
-    default: "cn=Manager,dc=domain,dc=com"
+    description: "The Common Name for root access to the configuration database"
+    default: "cn=admin,dc=domain,dc=com"
   olcRootPW:
     description: "Root PW for the database"
     default: "secret"
