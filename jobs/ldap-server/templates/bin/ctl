@@ -18,12 +18,14 @@ case $1 in
     set -x
     pid_guard $PIDFILE $JOB_NAME
 
-    export CONF_FILE=$JOB_DIR/slapd.ldif
-    export CONF_DIR=$STORE_DIR/slapd.d
+    CONF_FILE=$JOB_DIR/slapd.ldif
+    CONF_DIR=$STORE_DIR/slapd.d
+    rm -rf $CONF_DIR
     mkdir -p $CONF_DIR
+
     chown vcap:vcap $CONF_DIR
 
-    export DATA_DIR=$STORE_DIR/data
+    DATA_DIR=$STORE_DIR/data
     mkdir -p $DATA_DIR
     chown vcap:vcap $DATA_DIR
     chmod 700 $DATA_DIR
