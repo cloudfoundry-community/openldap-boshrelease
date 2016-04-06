@@ -76,6 +76,14 @@ olcDatabase: frontend
 #
 
 
+# set a rootpw for the config database so we can bind.
+# deny access to everyone else.
+dn: olcDatabase=config,cn=config
+objectClass: olcDatabaseConfig
+olcDatabase: config
+olcRootPW: secret
+olcAccess: to * by * none
+
 #######################################################################
 # LMDB database definitions
 #######################################################################
