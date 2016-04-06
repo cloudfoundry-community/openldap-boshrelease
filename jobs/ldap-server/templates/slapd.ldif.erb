@@ -104,3 +104,19 @@ olcRootPW: <%= p('olcRootPW') %>
 olcDbDirectory:	/var/vcap/store/ldap-server/data
 # Indices to maintain
 olcDbIndex: objectClass eq
+
+# Allow users to change their own password
+# Allow anonymous to authenticate against the password
+# Allow admin to change any password
+#olcAccess: to attrs=userPassword
+#	by self write
+#	by anonymous auth
+#	by dn.base="cn=admin,<%= p('olcSuffix') %>" write
+#	by dn.base="cn=admin,ou=Users,<%= p('olcSuffix') %>" read
+#	by * none
+# Allow users to change their own record
+# Allow anyone to read directory
+#olcAccess: to *
+#	by self write
+#	by dn.base="cn=admin,<%= p('olcSuffix') %>" write
+#	by * read
