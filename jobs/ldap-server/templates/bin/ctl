@@ -31,7 +31,7 @@ case $1 in
     chmod 700 $DATA_DIR
 
     sudo slapadd -F $CONF_DIR -n 0 -l $CONF_FILE
-    sudo slapd -F $CONF_DIR >>$LOG_DIR/$JOB_NAME.log 2>&1
+    sudo slapd -d stats,acl -F $CONF_DIR >>$LOG_DIR/$JOB_NAME.log 2>&1
 
     ;;
 
