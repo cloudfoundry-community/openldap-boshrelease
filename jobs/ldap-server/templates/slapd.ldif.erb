@@ -81,7 +81,7 @@ olcDatabase: frontend
 dn: olcDatabase=config,cn=config
 objectClass: olcDatabaseConfig
 olcDatabase: config
-olcRootPW: secret
+olcRootPW: <%= p('configDatabasePW') %>
 olcAccess: to * by * none
 
 #######################################################################

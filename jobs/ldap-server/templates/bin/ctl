@@ -15,22 +15,33 @@ export PATH=${OPENLDAP}/libexec:${OPENLDAP}/sbin:$PATH
 case $1 in
 
   start)
-    set -x
     pid_guard $PIDFILE $JOB_NAME
+
+    DATA_DIR=$STORE_DIR/data
+    if [ ! -d "$DATA_DIR" ]
+    then
+      echo "Data storeage directory doesn't exist. Creating $DATA_DIR."
+      mkdir -p $DATA_DIR
+      chown vcap:vcap $DATA_DIR
+      chmod 700 $DATA_DIR
+    fi
 
     CONF_FILE=$JOB_DIR/slapd.ldif
     CONF_DIR=$STORE_DIR/slapd.d
-    rm -rf $CONF_DIR
-    mkdir -p $CONF_DIR
+    if [ -n "$RELOAD_CONFIG_ON_RESTART" ]
+    then
+      echo "Deleting existing configuration"
+      rm -rf $CONF_DIR
+    fi
 
-    chown vcap:vcap $CONF_DIR
+    if [ ! -d "$CONF_DIR" ]
+    then
+      mkdir -p $CONF_DIR
+      chown vcap:vcap $CONF_DIR
+      echo "Creating config database from $CONF_FILE"
+      sudo slapadd -F $CONF_DIR -n 0 -l $CONF_FILE
+    fi
 
-    DATA_DIR=$STORE_DIR/data
-    mkdir -p $DATA_DIR
-    chown vcap:vcap $DATA_DIR
-    chmod 700 $DATA_DIR
-
-    sudo slapadd -F $CONF_DIR -n 0 -l $CONF_FILE
     sudo slapd -d stats,acl -F $CONF_DIR >>$LOG_DIR/$JOB_NAME.log 2>&1
 
     ;;

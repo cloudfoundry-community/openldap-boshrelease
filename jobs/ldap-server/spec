@@ -10,12 +10,18 @@ templates:
   helpers/ctl_utils.sh: helpers/ctl_utils.sh
   slapd.ldif.erb: slapd.ldif
 properties:
+  reloadConfigOnRestart:
+    description: "Should the config database be deleted and recreated on each deployment, this will destroy all configuration that was loaded during runtime"
+    default: true
+  configDatabasePW:
+    description: "The root password to access the config database"
+    default: secret
   olcSuffix:
-    description: "Default domain components of the db"
+    description: "Default domain components of the database"
     default: "dc=domain,dc=com"
   olcRootDN:
-    description: "The Common Name for root access to the database"
+    description: "The DN for root access to the database"
     default: "cn=admin,dc=domain,dc=com"
   olcRootPW:
-    description: "Root PW for the database"
-    default: "secret"
+    description: "The root password of the database"
+    default: secret
