@@ -110,12 +110,12 @@ olcDbIndex: objectClass eq
 olcAccess: to attrs=userPassword
   by self write
   by anonymous auth
-  by dn.base="cn=admin,<%= p('olcSuffix') %>" write
+  by dn.base="<%= p('olcRootDN') %>" write
   by dn.base="cn=admin,ou=Users,<%= p('olcSuffix') %>" read
   by * none
 # Allow users to change their own record
 # Allow anyone to read directory
 olcAccess: to *
   by self write
-  by dn.base="cn=admin,<%= p('olcSuffix') %>" write
+  by dn.base="<%= p('olcRootDN') %>" write
   by * read
