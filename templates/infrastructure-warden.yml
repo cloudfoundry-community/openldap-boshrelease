@@ -15,6 +15,7 @@ jobs:
   - name: ldap-server
     networks:
       - name: openldap1
+        static_ips: (( static_ips(0) ))
 
 compilation:
   cloud_properties:
