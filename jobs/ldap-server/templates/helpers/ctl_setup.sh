@@ -55,14 +55,13 @@ do
 done
 export TMPDIR=$TMP_DIR
 
-export C_INCLUDE_PATH=/var/vcap/packages/mysqlclient/include/mysql:/var/vcap/packages/sqlite/include:/var/vcap/packages/libpq/include
-export LIBRARY_PATH=/var/vcap/packages/mysqlclient/lib/mysql:/var/vcap/packages/sqlite/lib:/var/vcap/packages/libpq/lib
+export CONF_DIR=$JOB_DIR/config
+chown -R vcap:vcap "${CONF_DIR}"
 
-# consistent place for vendoring python libraries within package
-if [[ -d ${WEBAPP_DIR:-/xxxx} ]]
-then
-  export PYTHONPATH=$WEBAPP_DIR/vendor/lib/python
-fi
+export CERT_DIR=$CONF_DIR/certs/
+chown vcap:vcap ${CERT_DIR}/*.{crt,key}
+
+chmod 640 ${CERT_DIR}/*.{crt,key}
 
 PIDFILE=$RUN_DIR/$output_label.pid
 

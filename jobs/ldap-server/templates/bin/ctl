@@ -26,23 +26,23 @@ case $1 in
       chmod 700 $DATA_DIR
     fi
 
-    CONF_FILE=$JOB_DIR/config/slapd.ldif
-    CONF_DIR=$STORE_DIR/slapd.d
+    conf_file=$CONF_DIR/slapd.ldif
+    conf_db=$STORE_DIR/slapd.d
     if [ -n "$RELOAD_CONFIG_ON_RESTART" ]
     then
       echo "Deleting existing configuration"
-      rm -rf $CONF_DIR
+      rm -rf $conf_db
     fi
 
-    if [ ! -d "$CONF_DIR" ]
+    if [ ! -d "$conf_db" ]
     then
-      mkdir -p $CONF_DIR
-      chown vcap:vcap $CONF_DIR
-      echo "Creating config database from $CONF_FILE"
-      sudo slapadd -F $CONF_DIR -n 0 -l $CONF_FILE
+      mkdir -p $conf_db
+      chown vcap:vcap $conf_db
+      echo "Creating config database from $conf_file"
+      sudo slapadd -F $conf_db -n 0 -l $conf_file
     fi
 
-    sudo slapd -d stats,acl -F $CONF_DIR >>$LOG_DIR/$JOB_NAME.log 2>&1
+    sudo slapd -d stats,acl -F $conf_db >>$LOG_DIR/$JOB_NAME.log 2>&1
 
     ;;
 
