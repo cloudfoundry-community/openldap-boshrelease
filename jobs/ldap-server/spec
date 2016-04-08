@@ -8,20 +8,20 @@ templates:
   data/properties.sh.erb: data/properties.sh
   helpers/ctl_setup.sh: helpers/ctl_setup.sh
   helpers/ctl_utils.sh: helpers/ctl_utils.sh
-  slapd.ldif.erb: slapd.ldif
+  slapd.ldif.erb: config/slapd.ldif
 properties:
-  reloadConfigOnRestart:
+  ldap.reloadConfigOnRestart:
     description: "Should the config database be deleted and recreated on each deployment, this will destroy all configuration that was loaded during runtime"
     default: true
-  configDatabasePW:
+  ldap.configDatabasePW:
     description: "The root password to access the config database"
     default: secret
-  olcSuffix:
+  ldap.olcSuffix:
     description: "Default domain components of the database"
     default: "dc=domain,dc=com"
-  olcRootDN:
+  ldap.olcRootDN:
     description: "The DN for root access to the database"
     default: "cn=admin,dc=domain,dc=com"
-  olcRootPW:
+  ldap.olcRootPW:
     description: "The root password of the database"
     default: secret

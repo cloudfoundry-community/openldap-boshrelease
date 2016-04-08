@@ -26,7 +26,7 @@ case $1 in
       chmod 700 $DATA_DIR
     fi
 
-    CONF_FILE=$JOB_DIR/slapd.ldif
+    CONF_FILE=$JOB_DIR/config/slapd.ldif
     CONF_DIR=$STORE_DIR/slapd.d
     if [ -n "$RELOAD_CONFIG_ON_RESTART" ]
     then
