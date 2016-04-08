@@ -6,6 +6,11 @@ dn: cn=config
 objectClass: olcGlobal
 cn: config
 #
+# TLS certs:
+olcTLSCACertificateFile: /var/vcap/jobs/ldap-server/config/certs/ca.crt
+olcTLSCertificateFile: /var/vcap/jobs/ldap-server/config/certs/ssl.crt
+olcTLSCertificateKeyFile: /var/vcap/jobs/ldap-server/config/certs/ssl.key
+#
 #
 # Define global ACLs to disable default read access.
 #
