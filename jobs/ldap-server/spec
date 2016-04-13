@@ -28,9 +28,9 @@ properties:
   ldap.olcRootPW:
     description: "The root password of the database"
     default: secret
-  ldap.ca_cert:
+  ldap.ssl.ca_cert:
     description: "PEM-encoded CA certificate"
-  ldap.server_cert:
+  ldap.ssl.server_cert:
     description: "PEM-encoded server certificate"
-  ldap.server_key:
+  ldap.ssl.server_key:
     description: "PEM-encoded server key"
