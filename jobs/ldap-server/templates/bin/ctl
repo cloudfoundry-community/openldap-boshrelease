@@ -42,7 +42,14 @@ case $1 in
       sudo slapadd -F $conf_db -n 0 -l $conf_file
     fi
 
-    sudo slapd -h "ldap:/// ldaps:///" -d stats,acl -F $conf_db >>$LOG_DIR/$JOB_NAME.log 2>&1
+    if [ -n "$SSL_ACTIVE" ]
+    then
+      protocols="ldap:/// ldaps:///"
+    else
+      protocols="ldap:///"
+    fi
+
+    sudo slapd -h "$protocols" -d stats,acl -F $conf_db >>$LOG_DIR/$JOB_NAME.log 2>&1
 
     ;;
 

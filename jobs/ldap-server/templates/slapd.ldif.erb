@@ -5,12 +5,12 @@
 dn: cn=config
 objectClass: olcGlobal
 cn: config
-#
+#<% if p('ldap.ssl.active') %>
 # TLS certs:
 olcTLSCACertificateFile: /var/vcap/jobs/ldap-server/config/certs/ca.crt
 olcTLSCertificateFile: /var/vcap/jobs/ldap-server/config/certs/server.crt
 olcTLSCertificateKeyFile: /var/vcap/jobs/ldap-server/config/certs/server.key
-#
+#<% end %>
 #
 # Define global ACLs to disable default read access.
 #

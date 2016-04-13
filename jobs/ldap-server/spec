@@ -28,6 +28,9 @@ properties:
   ldap.olcRootPW:
     description: "The root password of the database"
     default: secret
+  ldap.ssl.active:
+    description: "Configure SSL for slapd"
+    default: false
   ldap.ssl.ca_cert:
     description: "PEM-encoded CA certificate"
   ldap.ssl.server_cert:
