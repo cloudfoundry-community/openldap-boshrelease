@@ -16,7 +16,7 @@ jobs:
 
 compilation:
   cloud_properties:
-    instance_type: m3.medium
+    instance_type: c3.large
 
 resource_pools:
   - name: small_z1
